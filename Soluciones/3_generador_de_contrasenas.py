@@ -150,6 +150,7 @@
 
 import string
 import secrets
+import pyperclip
 
 def Generar(l,m,mm,s,n):
     diccionario =""
@@ -181,8 +182,12 @@ def Generar(l,m,mm,s,n):
 
 print("Generador de contraseñas")
 while True:
-
-    largo=int(input("Indique la longitud de la contraseña "))
+    while True:
+        largo=int(input("Indique la longitud de la contraseña "))
+        if largo < 4:
+            print("indique un valor mayor a 4")
+        else:
+            break
 
     print("seleccione los caracteres validos ")
     min=True
@@ -240,6 +245,10 @@ while True:
 
     pasw=Generar(largo,min,may,sim,num)
     print(f" la contraseña generada es {pasw} ")
+    
+    cpy=input("Copiar al clipboard? y/n").lower()
+    if cpy=="y":
+        pyperclip.copy(pasw)
     ans=input("Desea genera una nueva? y/n").lower()
     if ans != "y":
         break
